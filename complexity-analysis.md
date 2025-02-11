@@ -11,10 +11,11 @@ It's important to pay attention to problem constrants. A lot of the times, you c
 | n ≤ 10<sup>4</sup> | O(n<sup>2</sup>) | Quadratic time | Slow comparison-based sorting (eg. Bubble Sort, Insertion Sort, Selection Sort) |
 | n ≤ 10<sup>6</sup> | O(n log n) | Linearithmic time | Fast comparison-based sorting (eg. Merge Sort) |
 | n ≤ 10<sup>8</sup> | O(n) | Linear time | Linear search, 2 pointer approach, sliding window approach |
+| n > 10<sup>9</sup> | O($`\sqrt{n}`$) | Square root time | Primer factorization |
 | n > 10<sup>9</sup> | O(log n) | Logarithmic time | Binary search, finding GCD with Euclidean Algorithm |
 | n > 10<sup>9</sup> | O(1) | Constant time | |
 
-In general, the number has to smaller than 10<sup>9</sup> after assigning the max possible constraint in the big O of your algorithm.
+In general, in order to pass the judge, the number definitely has to smaller than 10<sup>9</sup>, ideally smaller than 10<sup>8</sup>, after assigning the max possible n value.
 
 It's easy to calculate this with python. See the following for the cubic time example.
 
