@@ -6,23 +6,54 @@ Similar to typical DFS. Mark the node visited in the beginning of the recursive 
 def topoSort(self, n: int, edges: List[List[int]]) -> List[int]:
     adj = [list() for _ in range(n)]
     for u, v in edges:
-        adj[v].append(u)
+        adj[u].append(v)
 
-    visited = set()
+    visited = [0] * n
     stack = list()
 
-    def topoSortHelper(v):
-        visited.add(v)
-        for nei in adj[v]:
-            if nei not in visited:
-                topoSortHelper(nei)
-        stack.append(v)
+    def dfs(u):
+        visited[u] = 1
+        for v in adj[u]:
+            if not visited[v]:
+                dfs(v)
+        stack.append(u)
 
-    for v in range(n):
-        if v not in visited:
-            topoSort(v)
+    for u in range(n):
+        if not visited[u]:
+            dfs(u)
 
-    stack.reverse()
+    return stack
+```
+
+If you also want to find cycles, add recursion stack `rec` to the above algorithm. Recursion stack helps you keep track of "back edge" - a node that points to one of its ancestors in a DFS tree.
+
+```python3
+def topoSort(self, n: int, edges: List[List[int]]) -> List[int]:
+    adj = [list() for _ in range(n)] 
+    for u, v in edges:
+        adj[u].append(v)
+
+    rec = [0] * n
+    visited = [0] * n
+    stack = list()
+
+    def dfs(u):
+        visited[u] = 1
+        rec[u] = 1
+        for v in adj[u]:
+            if not visited[v]:
+                if not dfs(v):
+                    return False
+            elif rec[v]:
+                return False
+        stack.append(u)
+        rec[u] = 0
+        return True
+
+    for u in range(numCourses):
+        if not visited[u] and not dfs(u):
+            return list() # returning an empty list because a cycle was found
+
     return stack
 ```
 
