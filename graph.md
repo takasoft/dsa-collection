@@ -92,6 +92,8 @@ def topoSort(self, n: int, edges: List[List[int]]) -> List[int]:
 
 ## Union Find
 
+Union Find (disjoint sets) can quickly tell if given nodes are part of the same set.
+
 ```python3
 class UnionFind:
     def __init__(self, size):
