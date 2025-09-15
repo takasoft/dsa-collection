@@ -94,6 +94,8 @@ def topoSort(self, n: int, edges: List[List[int]]) -> List[int]:
 
 Union Find (disjoint sets) can quickly tell if given nodes are part of the same set.
 
+This code implements both union by rank and path compression to achieve `O(α(n))` time complexity. 
+
 ```python3
 class UnionFind:
     def __init__(self, size):
